@@ -20,8 +20,12 @@ struct IdealistaServiceImpl: IdealistaService {
             throw ServiceError.badUrl
         }
         
-        let (data, _) = try await URLSession.shared.data(from: url)
-        return try JSONDecoder().decode([IdealistaModel].self, from: data)
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            return try JSONDecoder().decode([IdealistaModel].self, from: data)
+        } catch {
+            throw ServiceError.decodingFailed
+        }
     }
     
     func fetchIdelistaDetail() async throws -> IdealistaDetail {
@@ -30,7 +34,11 @@ struct IdealistaServiceImpl: IdealistaService {
             throw ServiceError.badUrl
         }
         
-        let (data, _) = try await URLSession.shared.data(from: url)
-        return try JSONDecoder().decode(IdealistaDetail.self, from: data)
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            return try JSONDecoder().decode(IdealistaDetail.self, from: data)
+        } catch {
+            throw ServiceError.decodingFailed
+        }
     }
 }

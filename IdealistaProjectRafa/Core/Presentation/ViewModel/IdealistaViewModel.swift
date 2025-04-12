@@ -12,7 +12,7 @@ protocol IdealistaViewModel {
     
     var idealistaModel: [IdealistaModel]? { get }
     var alertMessage: String { get }
-    var loadState: LoadState { get }
+    var loadState: LoadState<[IdealistaModel]> { get }
 
     func onAppear() async
     func toggleLike(for flat: IdealistaModel)
@@ -24,7 +24,7 @@ final class IdealistaViewModelImpl: IdealistaViewModel {
     let idealistaUseCase: IdealistaUseCase
     private(set) var idealistaModel: [IdealistaModel]?
     private(set) var alertMessage: String = ""
-    private(set) var loadState: LoadState = .initial
+    private(set) var loadState: LoadState<[IdealistaModel]> = .initial
     
     init(idealistaUseCase: IdealistaUseCase) {
         self.idealistaUseCase = idealistaUseCase
@@ -60,14 +60,14 @@ final class IdealistaViewModelImpl: IdealistaViewModel {
 @Observable
 final class IdealistaViewModelMock: IdealistaViewModel {
     
-    var loadState: LoadState = .initial
+    var loadState: LoadState<[IdealistaModel]> = .initial
     var alertMessage: String = ""
     var idealistaModel: [IdealistaModel]?
     var showModel: [IdealistaModel]?
     var delay: Int
     
     init(delay: Int = 0,
-         loadState: LoadState = .initial,
+         loadState: LoadState<[IdealistaModel]> = .initial,
          showModel: [IdealistaModel] = IdealistaModel.mocks) {
         self.delay = delay
         self.loadState = loadState

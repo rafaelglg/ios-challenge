@@ -7,10 +7,10 @@
 
 import Foundation
 
-enum LoadState: Equatable {
+enum LoadState<T: Equatable>: Equatable {
     case initial
     case loading
-    case success([IdealistaModel])
+    case success(T)
     case failure(Error)
     
     static func == (lhs: LoadState, rhs: LoadState) -> Bool {

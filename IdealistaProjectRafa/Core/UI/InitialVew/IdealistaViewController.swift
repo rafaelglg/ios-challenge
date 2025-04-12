@@ -36,7 +36,12 @@ final class IdealistaViewController: UIViewController {
     func setUpButton() {
         showListButton = UIButton(type: .system)
         showListButton.setTitle("Show ads list", for: .normal)
-        showListButton.addTarget(self, action: #selector(didTapShowList), for: .touchUpInside)
+        
+        let action = UIAction { [weak self] _ in
+            self?.didTapShowList()
+        }
+        
+        showListButton.addAction(action, for: .touchUpInside)
         
         showListButton.layer.cornerRadius = 12
         showListButton.layer.borderWidth = 2
@@ -55,22 +60,13 @@ final class IdealistaViewController: UIViewController {
         ])
     }
     
-    @objc private func didTapShowList() {
+    private func didTapShowList() {
         showList()
     }
     
     func showList() {
         let viewController = UIHostingController(rootView: IdealistaListView(viewModel: viewModel))
-        addChild(viewController)
-        view.addSubview(viewController.view)
-        
-        NSLayoutConstraint.activate([
-            viewController.view.topAnchor.constraint(equalTo: view.topAnchor),
-            viewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            viewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            viewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        
-        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true)
     }
 }

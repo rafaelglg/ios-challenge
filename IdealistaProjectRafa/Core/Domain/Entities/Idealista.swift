@@ -29,7 +29,7 @@ struct IdealistaModel: Decodable, Sendable, Hashable {
     let longitude: Double
     let description: String
     let multimedia: Multimedia
-    var features: Features
+    let features: Features
     var isLiked: Bool = false
     var likedDate: Date?
     
@@ -43,6 +43,15 @@ struct IdealistaModel: Decodable, Sendable, Hashable {
         }
         
         return url
+    }
+    
+    mutating func setIsLiked(to value: Bool) {
+        self.isLiked = value
+        if value {
+            self.likedDate = Date()
+        } else {
+            self.likedDate = nil
+        }
     }
     
     static var mock: IdealistaModel {

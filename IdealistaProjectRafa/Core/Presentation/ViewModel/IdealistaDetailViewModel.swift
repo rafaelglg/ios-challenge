@@ -10,7 +10,7 @@ import Foundation
 @MainActor
 protocol IdealistaDetailViewModel {
     var idealistaDetailModel: IdealistaDetail? { get }
-    var isLoading: Bool { get }
+    var loadState: LoadState<IdealistaDetail> { get }
     var errorMessage: String? { get }
     
     func onAppear() async
@@ -22,6 +22,7 @@ final class IdealistaDetailViewModelImpl: IdealistaDetailViewModel {
     
     let detailUseCase: IdealistaDetailUseCase
     private(set) var idealistaDetailModel: IdealistaDetail?
+    private(set) var loadState: LoadState<IdealistaDetail> = .initial
     private(set) var isLoading: Bool = false
     private(set) var errorMessage: String?
         
@@ -32,13 +33,13 @@ final class IdealistaDetailViewModelImpl: IdealistaDetailViewModel {
     
     func onAppear() async {
         
-        defer {
-            isLoading = false
-        }
-        
+        loadState = .loading
         do {
-            idealistaDetailModel = try await detailUseCase.execute()
+            let model = try await detailUseCase.execute()
+            idealistaDetailModel = model
+            loadState = .success(model)
         } catch {
+            loadState = .failure(error)
             errorMessage = error.localizedDescription
             print(error)
         }
@@ -48,30 +49,26 @@ final class IdealistaDetailViewModelImpl: IdealistaDetailViewModel {
 @MainActor
 @Observable
 final class IdealistaDetailViewModelMock: IdealistaDetailViewModel {
-    var isLiked: Bool = false
+    
+    var loadState: LoadState<IdealistaDetail> = .initial
     var idealistaDetailModel: IdealistaDetail?
-    var task: Task<Void, any Error>?
-    var isLoading: Bool = false
-    var mockModel: IdealistaDetail?
     var errorMessage: String?
     
     var delay: Int
+    var mockModel: IdealistaDetail?
     
-    init(delay: Int = 0, mockModel: IdealistaDetail? = .mock) {
+    init(delay: Int = 0,
+         mockModel: IdealistaDetail? = .mock,
+         loadState: LoadState<IdealistaDetail> = .initial
+    ) {
         self.delay = delay
         self.mockModel = mockModel
+        self.loadState = loadState
     }
     
     func onAppear() async {
-        isLoading = true
-        Task {
-            try? await Task.sleep(for: .seconds(delay))
-            isLoading = false
-            idealistaDetailModel = mockModel
-        }
-    }
-    
-    func onLikePressed() {
-        isLiked.toggle()
+        try? await Task.sleep(for: .seconds(delay))
+        idealistaDetailModel = mockModel
+        loadState = loadState
     }
 }

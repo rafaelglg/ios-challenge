@@ -13,14 +13,14 @@ struct IdealistaDetailView: View {
     
     var body: some View {
         List {
-            if viewModel.isLoading {
+            switch viewModel.loadState {
+            case .initial, .loading:
                 placeholder
-            } else if let model = viewModel.idealistaDetailModel {
+            case .success(let model):
                 IdealistaDetailRow(detailModel: model)
-            } else {
+            case .failure:
                 errorView
             }
-            
         }
         .navigationTitle("Detail")
         .navigationBarTitleDisplayMode(.inline)
@@ -42,6 +42,7 @@ struct IdealistaDetailView: View {
 
 #Preview("With mock") {
     let viewModel = IdealistaDetailViewModelMock()
+    viewModel.loadState = .success(IdealistaDetail.mock)
     return NavigationStack {
         IdealistaDetailView(
             viewModel: viewModel
@@ -50,8 +51,14 @@ struct IdealistaDetailView: View {
 }
 
 #Preview("Slow loading") {
-    let viewModel = IdealistaDetailViewModelMock(delay: 3)
-    return NavigationStack {
+    @Previewable @State var viewModel = IdealistaDetailViewModelMock(mockModel: .mock)
+    @Previewable @State var loadState = LoadState<IdealistaDetail>.initial
+    Task {
+        try? await Task.sleep(for: .seconds(3))
+        loadState = .success(IdealistaDetail.mock)
+    }
+    viewModel.loadState = loadState
+     return NavigationStack {
         IdealistaDetailView(
             viewModel: viewModel
         )
@@ -59,8 +66,8 @@ struct IdealistaDetailView: View {
 }
 
 #Preview("With placeHolder") {
-    let viewModel = IdealistaDetailViewModelMock()
-    viewModel.isLoading = true
+    @Previewable @State var viewModel = IdealistaDetailViewModelMock(loadState: .loading)
+    viewModel.loadState = .loading
     return NavigationStack {
         IdealistaDetailView(
             viewModel: viewModel
@@ -69,11 +76,13 @@ struct IdealistaDetailView: View {
 }
 
 #Preview("Error view") {
-    let viewModel = IdealistaDetailViewModelMock(mockModel: nil)
-    return NavigationStack {
+    @Previewable @State var viewModel = IdealistaDetailViewModelMock(
+        mockModel: nil,
+        loadState: .failure(URLError(.badURL))
+    )
+     return NavigationStack {
         IdealistaDetailView(
             viewModel: viewModel
         )
-        
     }
 }

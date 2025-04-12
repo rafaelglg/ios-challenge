@@ -30,4 +30,14 @@ final class IdealistaModelTest: XCTestCase {
         XCTAssertEqual(mockModel.address, "calle de Lagasca")
         XCTAssertEqual(mockModel.priceInfo.price.amount, 1195000)
     }
+    
+    func testSetIsLikedFalseClearsLikedDate() {
+         var model = IdealistaModel.mock
+         
+         model.setIsLiked(to: true)
+         model.setIsLiked(to: false)
+         
+         XCTAssertFalse(model.isLiked)
+         XCTAssertNil(model.likedDate)
+     }
 }

@@ -11,38 +11,38 @@ import XCTest
 final class LoadStateTests: XCTestCase {
 
     func testInitialStatesAreEqual() {
-        XCTAssertEqual(LoadState.initial, LoadState.initial)
+        XCTAssertEqual(LoadState<IdealistaModel>.initial, LoadState.initial)
     }
 
     func testLoadingStatesAreEqual() {
-        XCTAssertEqual(LoadState.loading, LoadState.loading)
+        XCTAssertEqual(LoadState<IdealistaModel>.loading, LoadState<IdealistaModel>.loading)
     }
     
     func testFailureStatesWithSameErrorDomainAndCodeAreEqual() {
         let error1 = NSError(domain: "TestDomain", code: 404, userInfo: nil)
         let error2 = NSError(domain: "TestDomain", code: 404, userInfo: nil)
         
-        XCTAssertEqual(LoadState.failure(error1), LoadState.failure(error2))
+        XCTAssertEqual(LoadState<IdealistaModel>.failure(error1), LoadState<IdealistaModel>.failure(error2))
     }
 
     func testFailureStatesWithDifferentErrorCodesAreNotEqual() {
         let error1 = NSError(domain: "TestDomain", code: 404, userInfo: nil)
         let error2 = NSError(domain: "TestDomain", code: 500, userInfo: nil)
         
-        XCTAssertNotEqual(LoadState.failure(error1), LoadState.failure(error2))
+        XCTAssertNotEqual(LoadState<IdealistaModel>.failure(error1), LoadState<IdealistaModel>.failure(error2))
     }
     
     func testFailureStatesWithDifferentDomainsAreNotEqual() {
         let error1 = NSError(domain: "Domain1", code: 500, userInfo: nil)
         let error2 = NSError(domain: "Domain2", code: 500, userInfo: nil)
         
-        XCTAssertNotEqual(LoadState.failure(error1), LoadState.failure(error2))
+        XCTAssertNotEqual(LoadState<IdealistaModel>.failure(error1), LoadState<IdealistaModel>.failure(error2))
     }
     
     func testDifferentStatesAreNotEqual() {
-        XCTAssertNotEqual(LoadState.initial, LoadState.loading)
-        XCTAssertNotEqual(LoadState.loading, LoadState.success([]))
-        XCTAssertNotEqual(LoadState.success([]), LoadState.failure(NSError(domain: "test", code: 1)))
+        XCTAssertNotEqual(LoadState<IdealistaModel>.initial, LoadState<IdealistaModel>.loading)
+        XCTAssertNotEqual(LoadState<IdealistaModel>.loading, LoadState<IdealistaModel>.success(IdealistaModel.mock))
+        XCTAssertNotEqual(LoadState<IdealistaModel>.success(IdealistaModel.mock), LoadState<IdealistaModel>.failure(NSError(domain: "test", code: 1)))
     }
 
 }
