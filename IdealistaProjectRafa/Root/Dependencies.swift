@@ -11,16 +11,16 @@ struct Dependencies {
     static func createIdealistaViewController() -> IdealistaViewController {
         let service = IdealistaServiceImpl()
         let repository = IdealistaRepositoryImpl(service: service)
-        let UseCase = IdealistaUseCaseImpl(repository: repository)
-        let viewModel = IdealistaViewModelImpl(idealistaUseCase: UseCase)
+        let useCase = IdealistaUseCaseImpl(repository: repository)
+        let viewModel = IdealistaViewModelImpl(idealistaUseCase: useCase)
         return IdealistaViewController(viewModel: viewModel)
     }
     
     static func createIdealistDetailView() -> IdealistaDetailView {
         let service = IdealistaServiceImpl()
         let repository = IdealistaDetailRepositoryImpl(service: service)
-        let UseCase = IdealistaDetailUseCaseImpl(repository: repository)
-        let viewModel = IdealistaDetailViewModelImpl(detailUseCase: UseCase)
+        let useCase = IdealistaDetailUseCaseImpl(repository: repository)
+        let viewModel = IdealistaDetailViewModelImpl(detailUseCase: useCase)
         return IdealistaDetailView(viewModel: viewModel)
     }
 }

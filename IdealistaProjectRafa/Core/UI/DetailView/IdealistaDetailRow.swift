@@ -77,7 +77,7 @@ struct IdealistaDetailRow: View {
         }
         basicInformation
         buildingInformation
-        EnergyInformation
+        energyInformation
     }
     
     var onPressedMoreButton: some View {
@@ -118,7 +118,7 @@ struct IdealistaDetailRow: View {
     }
     
     @ViewBuilder
-    var EnergyInformation: some View {
+    var energyInformation: some View {
         if !detailModel.energyCertification.title.isEmpty {
             Text("Energy Performance Certificate (EPC)")
                 .font(.title3)
@@ -158,4 +158,3 @@ struct IdealistaDetailRow: View {
         IdealistaDetailRow(detailModel: .empty)
     }
 }
-

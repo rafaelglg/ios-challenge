@@ -60,18 +60,17 @@ final class IdealistaViewController: UIViewController {
     }
     
     func showList() {
-        let vc = UIHostingController(rootView: IdealistaListView(viewModel: viewModel))
-        addChild(vc)
-        view.addSubview(vc.view)
+        let viewController = UIHostingController(rootView: IdealistaListView(viewModel: viewModel))
+        addChild(viewController)
+        view.addSubview(viewController.view)
         
         NSLayoutConstraint.activate([
-            vc.view.topAnchor.constraint(equalTo: view.topAnchor),
-            vc.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            vc.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            vc.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            viewController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            viewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            viewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            viewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        vc.view.translatesAutoresizingMaskIntoConstraints = false
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
     }
 }
-

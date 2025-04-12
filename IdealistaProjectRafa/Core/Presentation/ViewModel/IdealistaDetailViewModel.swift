@@ -10,10 +10,10 @@ import Foundation
 @MainActor
 protocol IdealistaDetailViewModel {
     var idealistaDetailModel: IdealistaDetail? { get }
-    var task: Task<Void, Error>? { get set }
     var isLoading: Bool { get }
+    var errorMessage: String? { get }
     
-    func onAppear()
+    func onAppear() async
 }
 
 @MainActor
@@ -23,25 +23,24 @@ final class IdealistaDetailViewModelImpl: IdealistaDetailViewModel {
     let detailUseCase: IdealistaDetailUseCase
     private(set) var idealistaDetailModel: IdealistaDetail?
     private(set) var isLoading: Bool = false
-    
-    var task: Task<Void, Error>?
-    
+    private(set) var errorMessage: String?
+        
     init(detailUseCase: IdealistaDetailUseCase) {
         self.detailUseCase = detailUseCase
+        isLoading = true
     }
     
-    func onAppear() {
-        isLoading = true
-        task = Task {
-            defer {
-                isLoading = false
-            }
-            
-            do {
-                idealistaDetailModel = try await detailUseCase.execute()
-            } catch {
-                print(error)
-            }
+    func onAppear() async {
+        
+        defer {
+            isLoading = false
+        }
+        
+        do {
+            idealistaDetailModel = try await detailUseCase.execute()
+        } catch {
+            errorMessage = error.localizedDescription
+            print(error)
         }
     }
 }
@@ -49,12 +48,12 @@ final class IdealistaDetailViewModelImpl: IdealistaDetailViewModel {
 @MainActor
 @Observable
 final class IdealistaDetailViewModelMock: IdealistaDetailViewModel {
-    
     var isLiked: Bool = false
     var idealistaDetailModel: IdealistaDetail?
     var task: Task<Void, any Error>?
     var isLoading: Bool = false
     var mockModel: IdealistaDetail?
+    var errorMessage: String?
     
     var delay: Int
     
@@ -63,9 +62,11 @@ final class IdealistaDetailViewModelMock: IdealistaDetailViewModel {
         self.mockModel = mockModel
     }
     
-    func onAppear() {
+    func onAppear() async {
+        isLoading = true
         Task {
             try? await Task.sleep(for: .seconds(delay))
+            isLoading = false
             idealistaDetailModel = mockModel
         }
     }

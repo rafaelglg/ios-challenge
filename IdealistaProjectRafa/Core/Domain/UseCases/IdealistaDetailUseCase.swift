@@ -12,10 +12,6 @@ protocol IdealistaDetailUseCase: Sendable {
 struct IdealistaDetailUseCaseImpl: IdealistaDetailUseCase {
     let repository: IdealistaDetailRepository
     
-    init(repository: IdealistaDetailRepository) {
-        self.repository = repository
-    }
-    
     func execute() async throws -> IdealistaDetail {
         try await repository.fetchDetailInfo()
     }

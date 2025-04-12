@@ -57,4 +57,3 @@ struct MapView: View {
         .removeListRowFormatting()
     }
 }
-

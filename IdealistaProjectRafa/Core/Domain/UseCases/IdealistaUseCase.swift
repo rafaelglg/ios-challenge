@@ -13,10 +13,6 @@ struct IdealistaUseCaseImpl: IdealistaUseCase {
     
     let repository: IdealistaRepository
     
-    init(repository: IdealistaRepository) {
-        self.repository = repository
-    }
-    
     func execute() async throws -> [IdealistaModel] {
         try await repository.fetchIdealistaInfo()
     }

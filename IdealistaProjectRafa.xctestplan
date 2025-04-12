@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "616CBFCC-E2DD-46B7-8B5E-6B0FAC0189D6",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:IdealistaProjectRafa.xcodeproj",
+      "identifier" : "539C789F2DA924E9002BAD34",
+      "name" : "IdealistaProjectRafa"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:IdealistaProjectRafa.xcodeproj",
+        "identifier" : "53AD4C5C2DAAB73B00238C1E",
+        "name" : "IdealistaProjectRafaTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -13,7 +13,6 @@ struct IdealistaDetailView: View {
     
     var body: some View {
         List {
-            
             if viewModel.isLoading {
                 placeholder
             } else if let model = viewModel.idealistaDetailModel {
@@ -25,7 +24,9 @@ struct IdealistaDetailView: View {
         }
         .navigationTitle("Detail")
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear(perform: viewModel.onAppear)
+        .task {
+            await viewModel.onAppear()
+        }
     }
     
     var placeholder: some View {
@@ -41,6 +42,15 @@ struct IdealistaDetailView: View {
 
 #Preview("With mock") {
     let viewModel = IdealistaDetailViewModelMock()
+    return NavigationStack {
+        IdealistaDetailView(
+            viewModel: viewModel
+        )
+    }
+}
+
+#Preview("Slow loading") {
+    let viewModel = IdealistaDetailViewModelMock(delay: 3)
     return NavigationStack {
         IdealistaDetailView(
             viewModel: viewModel

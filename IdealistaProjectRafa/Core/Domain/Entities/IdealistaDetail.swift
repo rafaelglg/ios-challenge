@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct IdealistaDetail: Codable, Identifiable {
+struct IdealistaDetail: Codable, Identifiable, Hashable {
     var id: String = UUID().uuidString
     
     let adid: Int
@@ -39,7 +39,6 @@ struct IdealistaDetail: Codable, Identifiable {
              homeType, state, multimedia, propertyComment, ubication, country,
              moreCharacteristics, energyCertification
     }
-    
     
     static var mock: IdealistaDetail {
         mocks[0]
@@ -188,7 +187,7 @@ struct IdealistaDetail: Codable, Identifiable {
     }
 }
 
-struct PriceInfoDetail: Codable {
+struct PriceInfoDetail: Codable, Hashable {
     let amount: Int
     let currencySuffix: String
 }
@@ -211,12 +210,12 @@ struct MultimediaImageDetail: Codable, Hashable {
     }
 }
 
-struct UbicationDetail: Codable {
+struct UbicationDetail: Codable, Hashable {
     let latitude: Double
     let longitude: Double
 }
 
-struct MoreCharacteristicsDetail: Codable {
+struct MoreCharacteristicsDetail: Codable, Hashable {
     let communityCosts: Int
     let roomNumber: Int
     let bathNumber: Int
@@ -248,12 +247,12 @@ struct MoreCharacteristicsDetail: Codable {
     }
 }
 
-struct EnergyCertificationDetail: Codable {
+struct EnergyCertificationDetail: Codable, Hashable {
     let title: String
     let energyConsumption: Emissions
     let emissions: Emissions
 }
 
-struct Emissions: Codable {
+struct Emissions: Codable, Hashable {
     let type: String
 }

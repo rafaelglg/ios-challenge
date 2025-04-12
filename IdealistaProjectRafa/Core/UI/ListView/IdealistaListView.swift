@@ -16,7 +16,7 @@ struct IdealistaListView: View {
             List {
                 
                 switch viewModel.loadState {
-                case .initial , .loading:
+                case .initial, .loading:
                     placeHolderRow
                 case .success(let flats):
                     showScreen(flats)
@@ -61,7 +61,6 @@ struct IdealistaListView: View {
         }
     }
 
-    
     var loadErrorScreen: some View {
         ContentUnavailableView("No info found", systemImage: "house.slash.fill", description: Text("Try again later."))
             .removeListRowFormatting()

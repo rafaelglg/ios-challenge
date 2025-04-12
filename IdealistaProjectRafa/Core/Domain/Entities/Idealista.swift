@@ -31,7 +31,7 @@ struct IdealistaModel: Decodable, Sendable, Hashable {
     let multimedia: Multimedia
     var features: Features
     var isLiked: Bool = false
-    var likedDate: Date? = nil
+    var likedDate: Date?
     
     enum CodingKeys: String, CodingKey {
         case propertyCode, thumbnail, floor, price, priceInfo, propertyType, operation, size, exterior, rooms, bathrooms, address, province, municipality, district, country, neighborhood, latitude, longitude, description, multimedia, features

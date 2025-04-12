@@ -5,7 +5,9 @@ opt_in_rules:
 - empty_string
 excluded:
 - Carthage
-- /Users/rafael/Rafael/Filmify/Filmify/Helper/ApiKey.swift
+- /Users/rafael/Rafael/Rafa-ios-challenge/IdealistaProjectRafa/Core/Domain/Entities/Idealista.swift
+- /Users/rafael/Rafael/Rafa-ios-challenge/IdealistaProjectRafa/Core/Domain/Entities/IdealistaDetail.swift
+
 - Pods
 - SwiftLint/Common/3rdPartyLib
 line_length:

@@ -12,10 +12,6 @@ protocol IdealistaRepository: Sendable {
 struct IdealistaRepositoryImpl: IdealistaRepository {
     let service: IdealistaService
     
-    init(service: IdealistaService) {
-        self.service = service
-    }
-    
     func fetchIdealistaInfo() async throws -> [IdealistaModel] {
         try await service.fetchIdelistaData()
     }
