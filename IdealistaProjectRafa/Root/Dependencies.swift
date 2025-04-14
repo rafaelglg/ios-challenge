@@ -9,8 +9,9 @@
 struct Dependencies {
     
     static func createIdealistaViewController() -> IdealistaViewController {
-        let service = IdealistaServiceImpl()
-        let repository = IdealistaRepositoryImpl(service: service)
+        let remoteService = IdealistaServiceImpl()
+        let localService = LocalPersistanceImpl()
+        let repository = IdealistaRepositoryImpl(local: localService, remote: remoteService)
         let useCase = IdealistaUseCaseImpl(repository: repository)
         let viewModel = IdealistaViewModelImpl(idealistaUseCase: useCase)
         return IdealistaViewController(viewModel: viewModel)

@@ -28,11 +28,32 @@ final class IdealistaDetailViewModelTests: XCTestCase {
         await sut?.onAppear()
         XCTAssertEqual(sut?.idealistaDetailModel?.moreCharacteristics, expectedModel.moreCharacteristics)
     }
+    
+    func test_onAppear_shouldFail() async {
+        var detailUseCase = IdealistaDetailUseCaseMock(shouldFail: true)
+        let sut = IdealistaDetailViewModelImpl(detailUseCase: detailUseCase)
+        detailUseCase.shouldFail = true
+        await sut.onAppear()
+        if case .failure(let error) = sut.loadState {
+            XCTAssertNotNil(error)
+        } else {
+            XCTFail("Expected loadState to be .failure")
+        }
+    }
 }
 
 struct IdealistaDetailUseCaseMock: IdealistaDetailUseCase {
     
+    var shouldFail: Bool
+    init(shouldFail: Bool = false) {
+        self.shouldFail = shouldFail
+    }
+    
     func execute() async throws -> IdealistaDetail {
-        IdealistaDetail.mock
+        if shouldFail {
+            throw NSError(domain: "Error execute testing", code: 0, userInfo: nil)
+        } else {
+            IdealistaDetail.mock
+        }
     }
 }

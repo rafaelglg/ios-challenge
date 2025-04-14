@@ -11,7 +11,6 @@ import Foundation
 protocol IdealistaDetailViewModel {
     var idealistaDetailModel: IdealistaDetail? { get }
     var loadState: LoadState<IdealistaDetail> { get }
-    var errorMessage: String? { get }
     
     func onAppear() async
 }
@@ -24,7 +23,6 @@ final class IdealistaDetailViewModelImpl: IdealistaDetailViewModel {
     private(set) var idealistaDetailModel: IdealistaDetail?
     private(set) var loadState: LoadState<IdealistaDetail> = .initial
     private(set) var isLoading: Bool = false
-    private(set) var errorMessage: String?
         
     init(detailUseCase: IdealistaDetailUseCase) {
         self.detailUseCase = detailUseCase
@@ -40,8 +38,6 @@ final class IdealistaDetailViewModelImpl: IdealistaDetailViewModel {
             loadState = .success(model)
         } catch {
             loadState = .failure(error)
-            errorMessage = error.localizedDescription
-            print(error)
         }
     }
 }
@@ -52,7 +48,6 @@ final class IdealistaDetailViewModelMock: IdealistaDetailViewModel {
     
     var loadState: LoadState<IdealistaDetail> = .initial
     var idealistaDetailModel: IdealistaDetail?
-    var errorMessage: String?
     
     var delay: Int
     var mockModel: IdealistaDetail?

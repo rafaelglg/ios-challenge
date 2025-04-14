@@ -11,9 +11,9 @@ import XCTest
 final class IdealistaUseCaseTests: XCTestCase {
     
     var sut: IdealistaUseCase?
+    let repositoryMock = IdealistaRepositoryMock()
 
     override func setUpWithError() throws {
-        let repositoryMock = IdealistaRepositoryMock()
         sut = IdealistaUseCaseImpl(repository: repositoryMock)
     }
 
@@ -25,9 +25,48 @@ final class IdealistaUseCaseTests: XCTestCase {
         let model = try await sut?.execute()
         XCTAssertEqual(model, IdealistaModel.mocks)
     }
+    
+    func test_executeAddFavorites() async throws {
+        let model = IdealistaModel.mock
+        try await sut?.executeAddFavorites(from: model)
+        XCTAssertEqual(model, IdealistaModel.mock)
+    }
+    
+    func test_executeGetFavoritesFromLocal() async throws {
+        let model = try await sut?.executeGetFavoritesFromLocal()
+        XCTAssertEqual(model, IdealistaModel.mocks)
+    }
+    
+    func test_removeFromFavorites() async throws {
+        let id = "test id"
+        try await sut?.removeFromFavorites(with: id)
+        XCTAssertTrue(repositoryMock.didCallRemoveFavorite)
+        XCTAssertEqual(id, repositoryMock.removedFavoriteId)
+    }
 }
 
-final class IdealistaRepositoryMock: IdealistaRepository {
+final class IdealistaRepositoryMock: IdealistaRepository, @unchecked Sendable {
+    
+    private(set) var didCallAddFavorite = false
+    private(set) var addedFavorite: IdealistaModel?
+    
+    private(set) var didCallRemoveFavorite = false
+    private(set) var removedFavoriteId: String?
+    
+    func addFavoriteToLocal(_ favorite: IdealistaModel) async throws {
+        didCallAddFavorite = true
+        addedFavorite = favorite
+    }
+    
+    func getFavoritesFromLocal() throws -> [IdealistaModel] {
+        IdealistaModel.mocks
+    }
+    
+    func removeFromFavorites(with id: String) throws {
+        didCallRemoveFavorite = true
+        removedFavoriteId = id
+    }
+    
     func fetchIdealistaInfo() async throws -> [IdealistaModel] {
         IdealistaModel.mocks
     }

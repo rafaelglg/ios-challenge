@@ -149,7 +149,7 @@ struct IdealistaDetailRow: View {
 
 #Preview("Mock") {
     List {
-        IdealistaDetailRow(detailModel: .empty)
+        IdealistaDetailRow(detailModel: .mock)
     }
 }
 

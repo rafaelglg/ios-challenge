@@ -10,19 +10,20 @@ import Foundation
 @MainActor
 protocol IdealistaViewModel {
     
-    var idealistaModel: [IdealistaModel]? { get }
+    var idealistaModel: [IdealistaModel]? { get set }
     var alertMessage: String { get }
     var loadState: LoadState<[IdealistaModel]> { get }
 
     func onAppear() async
     func toggleLike(for flat: IdealistaModel)
+    func handleAdsFavorite(model: IdealistaModel) async throws
 }
 
 @MainActor
 @Observable
 final class IdealistaViewModelImpl: IdealistaViewModel {
     let idealistaUseCase: IdealistaUseCase
-    private(set) var idealistaModel: [IdealistaModel]?
+    var idealistaModel: [IdealistaModel]?
     private(set) var alertMessage: String = ""
     private(set) var loadState: LoadState<[IdealistaModel]> = .initial
     
@@ -36,8 +37,12 @@ final class IdealistaViewModelImpl: IdealistaViewModel {
         loadState = .loading
         do {
             let flats = try await idealistaUseCase.execute()
-            self.idealistaModel = flats
-            loadState = .success(flats)
+            let favorites = try idealistaUseCase.executeGetFavoritesFromLocal()
+
+            let mergedFlats = mergeAds(flats: flats, markFavorite: favorites)
+
+            self.idealistaModel = mergedFlats
+            loadState = .success(mergedFlats)
         } catch {
             loadState = .failure(error)
         }
@@ -53,6 +58,34 @@ final class IdealistaViewModelImpl: IdealistaViewModel {
         model[index].likedDate = model[index].isLiked ? Date() : nil
         
         idealistaModel = model
+        
+        Task {
+            do {
+                let updatedFlat = model[index]
+                try await handleAdsFavorite(model: updatedFlat)
+            } catch {
+                self.loadState = .failure(error)
+            }
+        }
+    }
+    
+    func mergeAds(flats: [IdealistaModel], markFavorite: [IdealistaModel]) -> [IdealistaModel] {
+        return flats.map { flat in
+            var updated = flat
+            if let favorite = markFavorite.first(where: { $0.propertyCode == flat.propertyCode }) {
+                updated.isLiked = true
+                updated.likedDate = favorite.likedDate
+            }
+            return updated
+        }
+    }
+    
+    func handleAdsFavorite(model: IdealistaModel) async throws {
+        if model.isLiked {
+            try await idealistaUseCase.executeAddFavorites(from: model)
+        } else {
+            try idealistaUseCase.removeFromFavorites(with: model.propertyCode )
+        }
     }
 }
 
@@ -81,8 +114,6 @@ final class IdealistaViewModelMock: IdealistaViewModel {
     }
     
     func refreshable() async throws { }
-    
-    func toggleLike(for flat: IdealistaModel) {
-        
-    }
+    func toggleLike(for flat: IdealistaModel) { }
+    func handleAdsFavorite(model: IdealistaModel) async throws { }
 }
