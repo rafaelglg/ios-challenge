@@ -114,7 +114,7 @@ struct IdealistaRowView: View {
     }
 }
 
-#Preview("With action") {
+#Preview("With like action") {
     @Previewable @State var isLiked: Bool = false
     // swiftlint:disable:next line_length
     var model = IdealistaModel(propertyCode: "123", thumbnail: "image.jpg", floor: "2", price: 200000, priceInfo: PriceInfo(price: Price(amount: 0, currencySuffix: "")), propertyType: "Apartment", operation: "Sale", size: 80, exterior: true, rooms: 3, bathrooms: 2, address: "Calle Ficticia 123", province: "Madrid", municipality: "Madrid", district: "Centro", country: "España", neighborhood: "Chamberí", latitude: 40.4168, longitude: -3.7038, description: "Hermoso apartamento", multimedia: Multimedia(images: [ImageDetail(url: "", tag: "")]), features: Features(hasSwimmingPool: nil, hasTerrace: nil, hasAirConditioning: false, hasBoxRoom: false, hasGarden: false))

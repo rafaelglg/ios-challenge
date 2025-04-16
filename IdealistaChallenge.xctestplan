@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "E3EB035E-767A-48B1-A47F-633E4E867D0D",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:IdealistaChallenge.xcodeproj",
+      "identifier" : "53EEC9792DB041E300DDC2B1",
+      "name" : "IdealistaChallenge"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:IdealistaChallenge.xcodeproj",
+        "identifier" : "53EECAA42DB0453F00DDC2B1",
+        "name" : "IdealistaChallengeTests"
+      }
+    }
+  ],
+  "version" : 1
+}

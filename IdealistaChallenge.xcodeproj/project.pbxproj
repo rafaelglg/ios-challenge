@@ -17,6 +17,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5396354F2DB05C6400E4DE88 /* IdealistaChallenge.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = IdealistaChallenge.xctestplan; sourceTree = "<group>"; };
 		53EEC97A2DB041E300DDC2B1 /* IdealistaChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IdealistaChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53EECAA52DB0453F00DDC2B1 /* IdealistaChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdealistaChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -68,6 +69,7 @@
 		53EEC9712DB041E300DDC2B1 = {
 			isa = PBXGroup;
 			children = (
+				5396354F2DB05C6400E4DE88 /* IdealistaChallenge.xctestplan */,
 				53EEC97C2DB041E300DDC2B1 /* IdealistaChallenge */,
 				53EECAA62DB0453F00DDC2B1 /* IdealistaChallengeTests */,
 				53EEC97B2DB041E300DDC2B1 /* Products */,
@@ -429,7 +431,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafael.IdealistaChallengeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 6.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IdealistaChallenge.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IdealistaChallenge";
 			};
@@ -448,7 +450,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafael.IdealistaChallengeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 6.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IdealistaChallenge.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IdealistaChallenge";
 			};

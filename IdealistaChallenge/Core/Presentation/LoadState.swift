@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum LoadState<T: Equatable>: Equatable {
+enum LoadState<T: Equatable & Sendable>: Equatable, Sendable {
     case initial
     case loading
     case success(T)
