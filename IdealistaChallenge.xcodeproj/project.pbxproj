@@ -22,22 +22,9 @@
 		53EECAA52DB0453F00DDC2B1 /* IdealistaChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdealistaChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		53D8A97E2DB063AC00464AB7 /* Exceptions for "IdealistaChallenge" folder in "IdealistaChallenge" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 53EEC9792DB041E300DDC2B1 /* IdealistaChallenge */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		53EEC97C2DB041E300DDC2B1 /* IdealistaChallenge */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				53D8A97E2DB063AC00464AB7 /* Exceptions for "IdealistaChallenge" folder in "IdealistaChallenge" target */,
-			);
 			path = IdealistaChallenge;
 			sourceTree = "<group>";
 		};
