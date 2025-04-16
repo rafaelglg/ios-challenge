@@ -5,8 +5,8 @@ opt_in_rules:
 - empty_string
 excluded:
 - Carthage
-- /Users/rafael/Rafael/IdealistaChallenge/IdealistaChallenge/Core/Domain/Entities/Idealista.swift
-- /Users/rafael/Rafael/IdealistaChallenge/IdealistaChallenge/Core/Domain/Entities/IdealistaDetail.swift
+- IdealistaChallenge/Core/Domain/Entities/Idealista.swift
+- IdealistaChallenge/Core/Domain/Entities/IdealistaDetail.swift
 
 - Pods
 - SwiftLint/Common/3rdPartyLib
