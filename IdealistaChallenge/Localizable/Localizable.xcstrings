@@ -331,6 +331,29 @@
         }
       }
     },
+    "show_ads_list_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show ads list"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show ads list"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver lista de anuncios"
+          }
+        }
+      }
+    },
     "Try again later." : {
       "localizations" : {
         "base 2" : {

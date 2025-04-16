@@ -35,7 +35,7 @@ final class IdealistaViewController: UIViewController {
     
     func setUpButton() {
         showListButton = UIButton(type: .system)
-        showListButton.setTitle("Show ads list", for: .normal)
+        showListButton.setTitle(String(localized: "show_ads_list_button_title"), for: .normal)
         
         let action = UIAction { [weak self] _ in
             self?.didTapShowList()
