@@ -13,10 +13,6 @@ Icon
 #Avoid api Key
 ApiKey.swift
 
-#Avoid GoogleServiceInfo plist from git
-GoogleService-Info.plist
-
-
 # Thumbnails
 ._*
 
