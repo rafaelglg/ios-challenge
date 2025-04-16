@@ -3,6 +3,12 @@
   "strings" : {
     "**Price**:" : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Price**"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19,6 +25,12 @@
     },
     "Advertiser's comment" : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advertiser's comment"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35,6 +47,12 @@
     },
     "Basic information" : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basic information"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -51,6 +69,12 @@
     },
     "Building information" : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Building information"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -67,6 +91,12 @@
     },
     "Come again later." : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Come again later."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -83,6 +113,12 @@
     },
     "Constructed Area:" : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Constructed Area:"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99,6 +135,12 @@
     },
     "delete from favorites" : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete from favorites"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -115,6 +157,12 @@
     },
     "Detail" : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detail"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -131,6 +179,12 @@
     },
     "Energy Performance Certificate (EPC)" : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Energy Performance Certificate (EPC)"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -147,6 +201,12 @@
     },
     "Map" : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Map"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -163,6 +223,12 @@
     },
     "No ads found" : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No ads found"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -179,6 +245,12 @@
     },
     "No info found" : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No info found"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -195,6 +267,12 @@
     },
     "Saved %@" : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved %@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -211,6 +289,12 @@
     },
     "See less" : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See less"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -227,6 +311,12 @@
     },
     "See more" : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See more"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -243,6 +333,12 @@
     },
     "Try again later." : {
       "localizations" : {
+        "base 2" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try again later."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
