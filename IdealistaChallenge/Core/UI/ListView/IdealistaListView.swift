@@ -26,8 +26,7 @@ struct IdealistaListView: View {
             }
             .clipped()
             .refreshable {
-                try? await Task.sleep(for: .seconds(2))
-                await viewModel.onAppear()
+                await viewModel.refreshable()
             }
             .navigationDestination(for: IdealistaModel.self) { _ in
                 Dependencies.createIdealistDetailView()
