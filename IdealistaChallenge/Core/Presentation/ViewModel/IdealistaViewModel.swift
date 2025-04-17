@@ -17,6 +17,7 @@ protocol IdealistaViewModel {
     func onAppear() async
     func toggleLike(for flat: IdealistaModel)
     func handleAdsFavorite(model: IdealistaModel) async throws
+    func refreshable() async
 }
 
 @MainActor
@@ -35,6 +36,22 @@ final class IdealistaViewModelImpl: IdealistaViewModel {
         guard idealistaModel == nil else { return }
         
         loadState = .loading
+        do {
+            let flats = try await idealistaUseCase.execute()
+            let favorites = try idealistaUseCase.executeGetFavoritesFromLocal()
+
+            let mergedFlats = mergeAds(flats: flats, markFavorite: favorites)
+
+            self.idealistaModel = mergedFlats
+            loadState = .success(mergedFlats)
+        } catch {
+            loadState = .failure(error)
+        }
+    }
+    
+    func refreshable() async {
+        loadState = .loading
+        try? await Task.sleep(for: .seconds(2))
         do {
             let flats = try await idealistaUseCase.execute()
             let favorites = try idealistaUseCase.executeGetFavoritesFromLocal()
@@ -113,7 +130,7 @@ final class IdealistaViewModelMock: IdealistaViewModel {
         loadState = loadState
     }
     
-    func refreshable() async throws { }
+    func refreshable() async { }
     func toggleLike(for flat: IdealistaModel) { }
     func handleAdsFavorite(model: IdealistaModel) async throws { }
 }
